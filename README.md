@@ -49,6 +49,7 @@ input {
 
 Единственный параметр, который я добавил - это отключение "горячих-углов"
 
+
 ```
 output "YOUR-MONITOR" {
 	hot-corners {
@@ -68,8 +69,9 @@ spawn-at-startup "qs" "-c" "noctalia-shell"
 
 ## Секция биндов
 
-Бинды для эмодзи, лаунчера и буфера обмена
+Бинды для эмодзи, лаунчера и буфера обмена с поддержкой скриншота.
 
+P.S. Для работы нужны пакеты grim, slurp.
 ```
 binds {
     Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
@@ -77,6 +79,12 @@ binds {
     Mod+P { spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
     Mod+E { spawn-sh "qs -c noctalia-shell ipc call launcher emoji"; }
  
+ 
+    // Скриншот выделенной области в буфер обмена
+    Mod+Shift+S { spawn "sh" "-c" "grim -g \"$(slurp -d)\" - | wl-copy -t image/png"; }
+    // Скриншот всего экрана в буфер обмена
+    Mod+S { spawn "sh" "-c" "grim - | wl-copy -t image/png"; }
+
 ```
 
 

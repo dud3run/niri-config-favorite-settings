@@ -79,6 +79,12 @@ binds {
 
     Mod+P { spawn-sh "qs -c noctalia-shell ipc call launcher clipboard"; }
     Mod+E { spawn-sh "qs -c noctalia-shell ipc call launcher emoji"; }
+ 
+    // Скриншот выделенной области в буфер обмена
+    Mod+Shift+S { spawn "sh" "-c" "grim -g \"$(slurp -d)\" - | wl-copy -t image/png"; }
+    // Скриншот всего экрана в буфер обмена
+    Mod+S { spawn "sh" "-c" "grim - | wl-copy -t image/png"; }
+
 } 
 
 
